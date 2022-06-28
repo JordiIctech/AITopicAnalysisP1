@@ -1,1 +1,7 @@
+Main API: https://catalog.data.gov/dataset/weekly-counts-of-death-by-jurisdiction-and-cause-of-death
+
+Backup APIs:
+https://catalog.data.gov/dataset/ah-monthly-provisional-counts-of-deaths-by-age-group-and-race-ethnicity-for-select-causes-
+https://catalog.data.gov/dataset/monthly-counts-of-deaths-by-select-causes-2014-2019
+https://catalog.data.gov/dataset/weekly-counts-of-deaths-by-state-and-select-causes-2014-2018-79633
 
