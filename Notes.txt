@@ -1,7 +1,22 @@
-Main API: https://catalog.data.gov/dataset/weekly-counts-of-death-by-jurisdiction-and-cause-of-death
+Main API: https://catalog.data.gov/dataset/ah-monthly-provisional-counts-of-deaths-by-age-group-and-race-ethnicity-for-select-causes-
+Cancer is denoted as Malignant neoplasms.
+Make a table with population sized of each state.
+
+JSON: https://data.cdc.gov/api/views/u6jv-9ijr/rows.json?accessType=DOWNLOAD
+
+Queries:
+-Which disease category has decreased the most from year x to year y?
+-Which disease category has increased the most from year x to year y?
+-What year saw the lowest rate of x disease?
+-When x medical tool was invented what effects did it have on y disease during that year?
+-Which disease category has increased the most percentage wise?
+-Which disease category has decreased the most percentage wise?
+-What ethnicity was affected most by x disease during y year?
+-What age group experience the largest decrease in mortality during y year?
+-Which month of the year has the largest spike in x disease?
+
 
 Backup APIs:
-https://catalog.data.gov/dataset/ah-monthly-provisional-counts-of-deaths-by-age-group-and-race-ethnicity-for-select-causes-
+https://catalog.data.gov/dataset/weekly-counts-of-death-by-jurisdiction-and-cause-of-death
 https://catalog.data.gov/dataset/monthly-counts-of-deaths-by-select-causes-2014-2019
 https://catalog.data.gov/dataset/weekly-counts-of-deaths-by-state-and-select-causes-2014-2018-79633
-
