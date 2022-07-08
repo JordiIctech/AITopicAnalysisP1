@@ -1,7 +1,7 @@
 import org.apache.spark.sql.SparkSession
 import org.apache.log4j.{Level, Logger}
 
-object testing {
+object winquieries {
   def main(args: Array[String]): Unit = {
     // create a spark session
     // for Windows
