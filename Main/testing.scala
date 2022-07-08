@@ -95,11 +95,13 @@ object testing {
     spark.sql("LOAD DATA LOCAL INPATH 'MortalityDatabase.csv' INTO TABLE MortalityDatabase")
     spark.sql("SELECT Count(*) AS TOTALCOUNT FROM MortalityDatabase").show()  //Total rows in database.
     spark.sql("SELECT Count(*) AS Deaths FROM MortalityDatabase WHERE MortalityDatabase.ALL='444'").show() //Number of instances where  total deaths = 444
-    spark.sql("SELECT * FROM MortalityDatabase WHERE MortalityDatabase.Year='2021'").show() //Shows all results at year 2021
+
+    var selection = "Age"
+    spark.sql(f"SELECT $selection FROM MortalityDatabase WHERE MortalityDatabase.Year='2021'").show() //Shows all ages for year 2021
 
     //spark.sql("SELECT * FROM MortalityDatabase").show()
 
-    
+
 
     spark.close()
   }
