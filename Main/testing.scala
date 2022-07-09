@@ -31,11 +31,18 @@ object testing {
       spark.sql(f"SELECT $selection FROM MortalityDatabase WHERE MortalityDatabase.Year='2021'").show() //Shows all select column for year 2021
     }
 
-    println("What column do you wish to see?")
-    all2021column(scala.io.StdIn.readLine())
+    //println("What column do you wish to see?")
+    //all2021column(scala.io.StdIn.readLine())
 
     //spark.sql("SELECT * FROM MortalityDatabase").show()
 
+    spark.sql("DROP table IF EXISTS UserInfo")
+    spark.sql("create table IF NOT EXISTS UserInfo(Username String, Password String) row format delimited fields terminated by ','")
+    spark.sql("LOAD DATA LOCAL INPATH 'userinfo.csv' INTO TABLE UserInfo")
+    spark.sql("SELECT * FROM UserInfo").show()
+
+
+    spark.sql("SELECT * FROM MortalityDatabase").show()
 
     spark.close()
   }

@@ -36,6 +36,13 @@ object winquieries {
 
     //spark.sql("SELECT * FROM MortalityDatabase").show()
 
+    spark.sql("DROP table IF EXISTS UserInfo")
+    spark.sql("create table IF NOT EXISTS UserInfo(Username String, Password String) row format delimited fields terminated by ','")
+    spark.sql("LOAD DATA LOCAL INPATH 'userinfo.csv' INTO TABLE UserInfo")
+    spark.sql("SELECT * FROM UserInfo").show()
+
+
+    spark.sql("SELECT * FROM MortalityDatabase").show()
 
     spark.close()
   }
