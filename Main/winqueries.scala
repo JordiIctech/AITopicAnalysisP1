@@ -1,8 +1,8 @@
 import org.apache.spark.sql.SparkSession
 import org.apache.log4j.{Level, Logger}
 
-object winquieries {
-  def main(args: Array[String]): Unit = {
+object winqueries {
+  def main(args: Array[String]): Unit = { //Remember to change Modify Run Configuration --> Working Directory --> Inputit
     // create a spark session
     // for Windows
     System.setProperty("hadoop.home.dir", "C:\\hadoop")
@@ -26,6 +26,13 @@ object winquieries {
     spark.sql("SELECT Count(*) AS TOTALCOUNT FROM MortalityDatabase").show()  //Total rows in database.
     spark.sql("SELECT Count(*) AS Deaths FROM MortalityDatabase WHERE MortalityDatabase.ALL_Deaths='444'").show() //Number of instances where  total deaths = 444
 
+    //spark.sql("SELECT * FROM MortalityDatabase").show()
+
+    spark.sql("DROP table IF EXISTS UserInfo")
+    spark.sql("create table IF NOT EXISTS UserInfo(Username String, Password String) row format delimited fields terminated by ','")
+    spark.sql("LOAD DATA LOCAL INPATH 'userinfo.csv' INTO TABLE UserInfo")
+    spark.sql("SELECT * FROM UserInfo").show()
+
     def all2021column(currentselect: String)= {
       var selection = currentselect
       spark.sql(f"SELECT $selection FROM MortalityDatabase WHERE MortalityDatabase.Year='2021'").show() //Shows all select column for year 2021
@@ -34,16 +41,9 @@ object winquieries {
     println("What column do you wish to see?")
     all2021column(scala.io.StdIn.readLine())
 
-    //spark.sql("SELECT * FROM MortalityDatabase").show()
-
-    spark.sql("DROP table IF EXISTS UserInfo")
-    spark.sql("create table IF NOT EXISTS UserInfo(Username String, Password String) row format delimited fields terminated by ','")
-    spark.sql("LOAD DATA LOCAL INPATH 'userinfo.csv' INTO TABLE UserInfo")
-    spark.sql("SELECT * FROM UserInfo").show()
-
-
     spark.sql("SELECT * FROM MortalityDatabase").show()
 
     spark.close()
   }
+
 }

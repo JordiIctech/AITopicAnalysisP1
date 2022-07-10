@@ -4,18 +4,14 @@ import org.apache.spark.sql.SparkSession
 object mainUA {
   def main(args: Array[String]): Unit = {
 
-    System.setProperty("hadoop.home.dir", "C:\\hadoop")
-    val spark = SparkSession
-      .builder
-      .appName("hello hive")
-      .config("spark.master", "local[*]")
-      .enableHiveSupport()
-      .getOrCreate()
-    Logger.getLogger("org").setLevel(Level.ERROR)
-    println("created spark session")
-    spark.sparkContext.setLogLevelit("ERROR")
+    functionsIMP.connectlink()
 
+    println("What column do you wish to see?")
+    functionsIMP.all2021column(scala.io.StdIn.readLine()) // First one has to ask prompt after connecting.
 
-    spark.sql("SELECT * FROM MortalityDatabase").show()
+    println("What column do you wish to see?")
+    functionsIMP.all2021column(scala.io.StdIn.readLine())
+
+    functionsIMP.spark.close()
   }
 }
