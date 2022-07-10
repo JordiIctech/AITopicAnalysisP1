@@ -25,4 +25,22 @@ object functionsIMP {
     println("Status----------------->Connected")
   }
 
+  def passwordmanagement() ={
+    var currentselect = scala.io.StdIn.readLine()
+    var extractpass = spark.sql(s"SELECT Password FROM UserInfo WHERE UserInfo.Username = '$currentselect'").first()
+
+    var currentpass = extractpass(0)
+
+    if( currentpass == "bigboss" ){
+      println("Pass 1 Selected")
+    } else if( currentpass == "word2" ){
+      println("Pass 3 Selected")
+    }
+    else{
+      println("No Pass Selected")}
+    }
+
+  //Need function to add disease column
+
+
 }

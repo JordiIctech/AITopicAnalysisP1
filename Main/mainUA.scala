@@ -9,8 +9,8 @@ object mainUA {
     println("What column do you wish to see?")
     functionsIMP.all2021column(scala.io.StdIn.readLine()) // First one has to ask prompt after connecting.
 
-    println("What column do you wish to see?")
-    functionsIMP.all2021column(scala.io.StdIn.readLine())
+    println("What is your username?")
+    functionsIMP.passwordmanagement()
 
     functionsIMP.spark.close()
   }
