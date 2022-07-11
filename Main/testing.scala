@@ -36,18 +36,50 @@ object testing {
     spark.sql("SELECT Month, ROUND(AVG(All_Deaths),2) as Msum FROM MortalityDatabase GROUP BY Month ORDER BY CAST(Msum as int)").show
   }
   //-------------------------------------------------------------------------------------------------------------------
+
+  def diseasegroup(selecteddisease: String): Unit ={ //
+    spark.sql(s"SELECT Month, ROUND(AVG($selecteddisease),2) as Msum FROM MortalityDatabase GROUP BY Month ORDER BY CAST(Msum as int)").show
+  }
+  //-------------------------------------------------------------------------------------------------------------------
   /*
-  def monthgroup(): Unit ={ //Average deaths per month over the years
-    spark.sql("SELECT Month, ROUND(AVG(All_Deaths),2) as Msum FROM MortalityDatabase GROUP BY Month ORDER BY CAST(Msum as int)").show
+  def calcdiff(): Unit ={ //
+    spark.sql("SELECT Year, Month, Age, Race, LAG(All_Deaths) " +
+      "AS previous_month_total, previous_month_total - LAG(previous_month_total) OVER (ORDER BY Month ) " +
+      "AS difference_previous_month FROM MortalityDatabase WHERE Age LIKE '%45-54%' AND Race='Hispanic' ORDER BY Month").show
   }
   //-------------------------------------------------------------------------------------------------------------------
-  def monthgroup(): Unit ={ //Average deaths per month over the years
-    spark.sql("SELECT Month, ROUND(AVG(All_Deaths),2) as Msum FROM MortalityDatabase GROUP BY Month ORDER BY CAST(Msum as int)").show
+ */
+  def generalquery(): Unit ={
+    spark.sql("SELECT * FROM MortalityDatabase WHERE Age LIKE '%85%' AND Month='12'").show(false)
   }
+
   //-------------------------------------------------------------------------------------------------------------------
-  def monthgroup(): Unit ={ //Average deaths per month over the years
-    spark.sql("SELECT Month, ROUND(AVG(All_Deaths),2) as Msum FROM MortalityDatabase GROUP BY Month ORDER BY CAST(Msum as int)").show
+  def mostvulnerable(): Unit ={ //Deathrates increased by over 15% overall in 2020 compared to 2019.
+    spark.sql("SELECT * FROM MortalityDatabase WHERE Age LIKE '%85%' AND Month='12'").show(false)
+
+    spark.sql("SELECT Year, SUM(All_Deaths), SUM(Natural), SUM(Septicimeia), SUM(Neoplasms), SUM(Diabetes), " +
+      "SUM(Alzheimer), SUM(Influenza_Pneumonia), SUM(Chronic_Respiratory_Diseases), SUM(Respiratory_System), SUM(Nephritis)," +
+      "SUM(UnClassified), SUM(Heart_Disease), SUM(Cerebrovascular_Diseases), SUM(COVID19_Others), SUM(COVID19) " +
+      "FROM MortalityDatabase WHERE Age LIKE '%85%' AND Month='12' GROUP BY Year").show(false)
   }
-*/
+
+  def leastvulnerable(): Unit ={ //Covid hit kids soft compared to elders.
+    spark.sql("SELECT * FROM MortalityDatabase WHERE Age LIKE '%14%' AND Month='12'").show(false)
+
+    spark.sql("SELECT Year, SUM(All_Deaths), SUM(Natural), SUM(Septicimeia), SUM(Neoplasms), SUM(Diabetes), " +
+      "SUM(Alzheimer), SUM(Influenza_Pneumonia), SUM(Chronic_Respiratory_Diseases), SUM(Respiratory_System), SUM(Nephritis)," +
+      "SUM(UnClassified), SUM(Heart_Disease), SUM(Cerebrovascular_Diseases), SUM(COVID19_Others), SUM(COVID19) " +
+      "FROM MortalityDatabase WHERE Age LIKE '%14%' AND Month='12' GROUP BY Year").show(false)
+  }
+
+  def costumvulnerable(): Unit ={
+    spark.sql("SELECT * FROM MortalityDatabase WHERE Age LIKE '%"+ "14" + "%' AND Month='12'").show(false)
+
+    spark.sql("SELECT Year, SUM(All_Deaths), SUM(Natural), SUM(Septicimeia), SUM(Neoplasms), SUM(Diabetes), " +
+      "SUM(Alzheimer), SUM(Influenza_Pneumonia), SUM(Chronic_Respiratory_Diseases), SUM(Respiratory_System), SUM(Nephritis)," +
+      "SUM(UnClassified), SUM(Heart_Disease), SUM(Cerebrovascular_Diseases), SUM(COVID19_Others), SUM(COVID19) " +
+      "FROM MortalityDatabase WHERE Age LIKE '%14%' AND Month='12' GROUP BY Year").show(false)
+  }
+
   //Delete row where username is then insert a new one with the new username.
 }

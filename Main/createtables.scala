@@ -17,7 +17,7 @@ object createtables {
 
     spark.sql("DROP table IF EXISTS MortalityDatabase")
     spark.sql("create table IF NOT EXISTS MortalityDatabase(Date String, DateStart String, DateEnd String, Jurisdiction String, " +
-      "Year INT, MONTH INT, Race String, Age String, All_Deaths INT, Natural INT, Septicimeia INT, Malignant INT, Neoplasms INT, " +
+      "Year INT, Month INT, Race String, Age String, All_Deaths INT, Natural INT, Septicimeia INT, Neoplasms INT, " +
       "Diabetes INT, Alzheimer INT, Influenza_Pneumonia INT, Chronic_Respiratory_Diseases	INT, Respiratory_System INT,	Nephritis INT, "+
       "UnClassified INT, Heart_Disease INT, Cerebrovascular_Diseases INT, COVID19_Others INT,	COVID19 INT) " +
       "row format delimited fields terminated by ','") //TBLPROPERTIES('skip.header.line.count'='1')

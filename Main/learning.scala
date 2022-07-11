@@ -12,7 +12,21 @@ object learning {
 
     testing.monthgroup()
 
+    //-------------------------------------------------------------------------------------------------------------
+    testing.diseasegroup("Heart_Disease") //Least amount of people go to the hospital during holidays.
 
+    testing.diseasegroup("Chronic_Respiratory_Diseases")
+    //-------------------------------------------------------------------------------------------------------------
+
+    //testing.calcdiff()
+
+    testing.mostvulnerable()
+
+    testing.leastvulnerable()
+
+    testing.costumvulnerable()
+
+    //testing.generalquery()
 
     testing.spark.close()
   }
