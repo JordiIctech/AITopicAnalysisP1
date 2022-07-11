@@ -6,10 +6,11 @@ object learning {
 
     testing.connectlink()
 
-    testing.yearmin()
+    testing.agegroup()
 
+    testing.yeargroup()
 
-
+    testing.monthgroup()
 
 
 

@@ -30,5 +30,16 @@ object createtables {
     spark.sql("SELECT * FROM MortalityDatabase").show()
     spark.sql("SELECT * FROM UserInfo").show
 
+    spark.sql("DROP TABLE IF EXISTS HeartMortality")
+    spark.sql("SET hive.exec.dynamic.partition.mode=nonstrict")
+    spark.sql("create table IF NOT EXISTS HeartMortality(Year Int, Month Int, Heart_Disease String) " +
+      "PARTITIONED by (AgeGroup String) row format delimited fields terminated by ',' ")
+    spark.sql("INSERT INTO TABLE HeartMortality(SELECT MortalityDatabase.Year, MortalityDatabase.Month, MortalityDatabase.Heart_Disease, " +
+      " MortalityDatabase.Age FROM MortalityDatabase WHERE Age='0-4 years' or Age='5-14 years' or Age='15-24 years') ") //Partitioned children
+    spark.sql("SELECT * FROM HeartMortality").show
+    spark.sql("SHOW PARTITIONS HeartMortality").show()
+
+
+    spark.close()
   }
 }
