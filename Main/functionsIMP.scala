@@ -13,12 +13,12 @@ object functionsIMP {
     .enableHiveSupport()
     .getOrCreate()
   Logger.getLogger("org").setLevel(Level.ERROR)
-  println("Status----------------->Spark Session Created")
+  println(Console.GREEN + "Status----------------->Spark Session Created" + Console.RESET)
   spark.sparkContext.setLogLevel("ERROR")
   //-------------------------------------------------------------------------------------------------------------------
 
   def connectlink(): Unit ={
-    println("Status----------------->Connected")
+    println(Console.GREEN + "Status----------------->Connected" + Console.RESET)
   }
   //-------------------------------------------------------------------------------------------------------------------
   def passwordmanagement(currentselect: String) ={//Extract password based on given username
@@ -26,13 +26,16 @@ object functionsIMP {
 
     var currentpass = extractpass(0)
 
-    if( currentpass == "bigboss" ){
-      println("Pass 1 Selected")
-    } else if( currentpass == "word2" ){
-      println("Pass 3 Selected")
+    println("What is your password?")
+    var askpass = scala.io.StdIn.readLine()
+
+    if(currentpass == askpass ){
+      println("Successfully Logged In")
+      "Correct"
     }
     else{
-      println("No Pass Selected")}
+      println("Wrong Password")
+      "Wrong"}
   }
   //-------------------------------------------------------------------------------------------------------------------
   def all2021column(currentselect: String)= {

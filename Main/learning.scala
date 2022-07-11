@@ -3,7 +3,7 @@ import org.apache.spark.sql.SparkSession
 
 object learning {
   def main(args: Array[String]): Unit = {
-
+/*
     testing.connectlink()
 
     testing.agegroup()
@@ -27,7 +27,7 @@ object learning {
     testing.costumvulnerable()
 
     //testing.generalquery()
-
+*/
     testing.spark.close()
   }
 }

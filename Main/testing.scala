@@ -3,8 +3,6 @@ import org.apache.log4j.{Level, Logger}
 
 object testing {
   def main(args: Array[String]): Unit = {
-    // create a spark session
-    // for Windows
 
   }
   System.setProperty("hadoop.home.dir", "C:\\hadoop")
@@ -17,7 +15,7 @@ object testing {
   Logger.getLogger("org").setLevel(Level.ERROR)
   println("created spark session")
   spark.sparkContext.setLogLevel("ERROR")
-
+/*
   def connectlink(): Unit ={
     println("Status----------------->Connected")
   }
@@ -99,7 +97,10 @@ object testing {
       "SUM(Alzheimer), SUM(Influenza_Pneumonia), SUM(Chronic_Respiratory_Diseases), SUM(Respiratory_System), SUM(Nephritis)," +
       "SUM(UnClassified), SUM(Heart_Disease), SUM(Cerebrovascular_Diseases), SUM(COVID19_Others), SUM(COVID19) " +
       "FROM MortalityDatabase WHERE Age LIKE '%14%' AND Month='12' GROUP BY Year").show(false)
-  }
+  }*/
+
+  
+
 
   //Delete row where username is then insert a new one with the new username.
 }
