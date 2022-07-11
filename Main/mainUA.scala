@@ -24,7 +24,8 @@ object mainUA {
         "\n9" +
         "\n10" +
         "\n11" +
-        "\n\t11a" +
+        "\nInsert" +
+        "\nDelete" +
         "\nEnd")
       running = scala.io.StdIn.readLine()
       println(Console.YELLOW + "Status----------------->" + running + " Selected, Loading Process" + Console.RESET)
@@ -96,6 +97,16 @@ object mainUA {
         println("Custom")
         backbot = scala.io.StdIn.readLine()
         //functionsIMP.generalquery()
+      }
+
+      else if (running == "insert" && adminstatus=="True"){
+        functionsIMP.insertvalue()
+        backbot = scala.io.StdIn.readLine()
+      }
+
+      else if (running == "delete" && adminstatus=="True"){
+        functionsIMP.modifyvalues()
+        backbot = scala.io.StdIn.readLine()
       }
 
       else if (running == "end"){

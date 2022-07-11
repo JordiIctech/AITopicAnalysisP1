@@ -99,8 +99,5 @@ object testing {
       "FROM MortalityDatabase WHERE Age LIKE '%14%' AND Month='12' GROUP BY Year").show(false)
   }*/
 
-  
 
-
-  //Delete row where username is then insert a new one with the new username.
 }

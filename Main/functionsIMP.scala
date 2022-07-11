@@ -37,6 +37,19 @@ object functionsIMP {
       println("Wrong Password")
       "Wrong"}
   }
+
+  def insertvalue(): Unit ={
+    spark.sql("INSERT INTO UserInfo(Username, Password) VALUES('additional4', 'person4')")
+    spark.sql("SELECT * FROM UserInfo").show()
+  }
+
+  def modifyvalues(): Unit ={
+    spark.sql("DROP table IF EXISTS UserInfo")
+    spark.sql("create table IF NOT EXISTS UserInfo(Username String, Password String) row format delimited fields terminated by ','")
+    spark.sql("LOAD DATA LOCAL INPATH 'userinfo.csv' INTO TABLE UserInfo")
+    spark.sql("SELECT * FROM UserInfo").show()
+  }
+
   //-------------------------------------------------------------------------------------------------------------------
   def all2021column(currentselect: String)= {
     var selection = currentselect
