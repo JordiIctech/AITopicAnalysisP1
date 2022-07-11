@@ -94,9 +94,8 @@ object mainUA {
       }
 
       else if (running == "11" && adminstatus=="True"){
-        println("Custom")
+        functionsIMP.generalquery()
         backbot = scala.io.StdIn.readLine()
-        //functionsIMP.generalquery()
       }
 
       else if (running == "insert" && adminstatus=="True"){

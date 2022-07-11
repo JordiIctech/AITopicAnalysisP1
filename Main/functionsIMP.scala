@@ -39,11 +39,17 @@ object functionsIMP {
   }
 
   def insertvalue(): Unit ={
-    spark.sql("INSERT INTO UserInfo(Username, Password) VALUES('additional4', 'person4')")
+    println("What Username Do You Wish To Add?")
+    var usernameadding = scala.io.StdIn.readLine()
+    println("What Is The New Password?")
+    var passwordadding = scala.io.StdIn.readLine()
+    spark.sql(f"INSERT INTO UserInfo(Username, Password) VALUES('$usernameadding', '$passwordadding')")
     spark.sql("SELECT * FROM UserInfo").show()
   }
 
   def modifyvalues(): Unit ={
+    println("What Username Do You Want To Delete?")
+    var usernamedelete = scala.io.StdIn.readLine()
     spark.sql("DROP table IF EXISTS UserInfo")
     spark.sql("create table IF NOT EXISTS UserInfo(Username String, Password String) row format delimited fields terminated by ','")
     spark.sql("LOAD DATA LOCAL INPATH 'userinfo.csv' INTO TABLE UserInfo")
@@ -84,7 +90,12 @@ object functionsIMP {
   //-------------------------------------------------------------------------------------------------------------------
  */
   def generalquery(): Unit ={
-    spark.sql("SELECT * FROM MortalityDatabase WHERE Age LIKE '%85%' AND Month='12'").show(false)
+    println("What table do you wish to view? Options: MortalityDatabase, UserInfo")
+    var tableselection = scala.io.StdIn.readLine()
+    println("What Column/Columns do you wish to see?")
+    var columselection = scala.io.StdIn.readLine()
+
+    spark.sql(f"SELECT $columselection FROM $tableselection").show(false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------
