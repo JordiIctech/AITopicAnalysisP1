@@ -57,9 +57,11 @@ object functionsIMP {
   }
 
   //-------------------------------------------------------------------------------------------------------------------
-  def all2021column(currentselect: String)= {
-    var selection = currentselect
-    spark.sql(f"SELECT $selection FROM MortalityDatabase WHERE MortalityDatabase.Year='2021'").show() //Shows all select column for year 2021
+  def all2021column()= {
+    //println("What column do you wish to see?")
+    var selection = "Neoplasms" //scala.io.StdIn.readLine()
+    var yearselect = "2021" //scala.io.StdIn.readLine()
+    spark.sql(f"SELECT Year, Month, Age, Race, $selection FROM MortalityDatabase WHERE MortalityDatabase.Year='$yearselect'").show(false) //Shows all select column for year 2021
   }
 
   //-------------------------------------------------------------------------------------------------------------------
@@ -106,15 +108,25 @@ object functionsIMP {
       "SUM(Alzheimer), SUM(Influenza_Pneumonia), SUM(Chronic_Respiratory_Diseases), SUM(Respiratory_System), SUM(Nephritis)," +
       "SUM(UnClassified), SUM(Heart_Disease), SUM(Cerebrovascular_Diseases), SUM(COVID19_Others), SUM(COVID19) " +
       "FROM MortalityDatabase WHERE Age LIKE '%85%' AND Month='12' GROUP BY Year").show(false)
+
+    spark.sql("SELECT Year, SUM(All_Deaths), SUM(Natural), SUM(Septicimeia), SUM(Neoplasms), SUM(Diabetes), " +
+      "SUM(Alzheimer), SUM(Influenza_Pneumonia), SUM(Chronic_Respiratory_Diseases), SUM(Respiratory_System), SUM(Nephritis)," +
+      "SUM(UnClassified), SUM(Heart_Disease), SUM(Cerebrovascular_Diseases), SUM(COVID19_Others), SUM(COVID19) " +
+      "FROM MortalityDatabase WHERE Age LIKE '%85%' GROUP BY Year").show(false)
   }
   //-------------------------------------------------------------------------------------------------------------------
   def leastvulnerable(): Unit ={ //Covid hit kids soft compared to elders.
-    spark.sql("SELECT * FROM MortalityDatabase WHERE Age LIKE '%14%' AND Month='12'").show(false)
+    spark.sql("SELECT * FROM MortalityDatabase WHERE Age LIKE '%"+ "14" + "%' AND Month='12'").show(false)
 
     spark.sql("SELECT Year, SUM(All_Deaths), SUM(Natural), SUM(Septicimeia), SUM(Neoplasms), SUM(Diabetes), " +
       "SUM(Alzheimer), SUM(Influenza_Pneumonia), SUM(Chronic_Respiratory_Diseases), SUM(Respiratory_System), SUM(Nephritis)," +
       "SUM(UnClassified), SUM(Heart_Disease), SUM(Cerebrovascular_Diseases), SUM(COVID19_Others), SUM(COVID19) " +
       "FROM MortalityDatabase WHERE Age LIKE '%14%' AND Month='12' GROUP BY Year").show(false)
+
+    spark.sql("SELECT Year, SUM(All_Deaths), SUM(Natural), SUM(Septicimeia), SUM(Neoplasms), SUM(Diabetes), " +
+      "SUM(Alzheimer), SUM(Influenza_Pneumonia), SUM(Chronic_Respiratory_Diseases), SUM(Respiratory_System), SUM(Nephritis)," +
+      "SUM(UnClassified), SUM(Heart_Disease), SUM(Cerebrovascular_Diseases), SUM(COVID19_Others), SUM(COVID19) " +
+      "FROM MortalityDatabase WHERE Age LIKE '%14%' GROUP BY Year").show(false)
   }
   //-------------------------------------------------------------------------------------------------------------------
   def costumvulnerable(): Unit ={

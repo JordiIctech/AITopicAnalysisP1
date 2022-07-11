@@ -13,20 +13,18 @@ object mainUA {
     while(running != "end") {
       println("=======================================================================================================")
       println("What do you wish to do?" +
-        "\n1-Login/Switch Accounts" +
-        "\n2" +
-        "\n3" +
-        "\n4" +
-        "\n5" +
-        "\n6" +
-        "\n7" +
-        "\n8" +
-        "\n9" +
-        "\n10" +
-        "\n11" +
-        "\nInsert" +
-        "\nDelete" +
-        "\nEnd")
+        "\n1 - Login/Switch Accounts" + //(admin,bigboss) (person2,word2)
+        "\n2 - Select Column For a Certain Year" + //Neoplasms, 2021 //1800 rows
+        "\n3 - Mortality By Age Group" + //Specified for 2020
+        "\n4 - Average Monthly Deaths Per Year" + //We can see a spike in 2020
+        "\n5 - Average Monthly Deaths Through The Years" + //December highest mortality
+        "\n6 - Mortality By Month By Disease" + //Heart vs Chronic Respiratory                Over 15% USA
+        "\n7 - Most Vulnerable Query December and Yearly" + // These are he people with highest mortality. Huge spike, Covid
+        "\n8 - Least Vulnerable Query December and Yearly" + // 5-14 years old
+        "\n9 Custom Query" + // Mostly to show tables
+        "\nInsert" + //Any username and password
+        "\nDelete" + //Any saved username
+        "\nEnd ") //Ends program
       running = scala.io.StdIn.readLine()
       println(Console.YELLOW + "Status----------------->" + running + " Selected, Loading Process" + Console.RESET)
 
@@ -39,61 +37,51 @@ object mainUA {
           logginstatus = "User"
           adminstatus = "True"
         }
-        if (confirmation == "Correct"){
+        else if (confirmation == "Correct"){
           logginstatus = "User"
+          adminstatus = "False"
         }
         backbot = scala.io.StdIn.readLine()
       }
 
       else if (running=="2" && logginstatus=="User") {
-        println("What column do you wish to see?")
-        functionsIMP.all2021column("All_Deaths") // First one has to ask prompt after connecting.   scala.io.StdIn.readLine()
+        functionsIMP.all2021column()
         backbot = scala.io.StdIn.readLine()
       }
 
       else if (running=="3" && logginstatus=="User") {
-        functionsIMP.connectlink()
-        backbot = scala.io.StdIn.readLine()
-      }
-
-      else if (running=="4" && logginstatus=="User") {
         functionsIMP.agegroup()
         backbot = scala.io.StdIn.readLine()
       }
 
-      else if (running=="5" && logginstatus=="User") {
+      else if (running=="4" && logginstatus=="User") {
         functionsIMP.yeargroup()
         backbot = scala.io.StdIn.readLine()
       }
 
-      else if (running=="6" && logginstatus=="User") {
+      else if (running=="5" && logginstatus=="User") {
         functionsIMP.monthgroup()
         backbot = scala.io.StdIn.readLine()
       }
 
-      else if (running=="7" && logginstatus=="User") {
+      else if (running=="6" && logginstatus=="User") {
         functionsIMP.diseasegroup("Heart_Disease") //Least amount of people go to the hospital during holidays.
         functionsIMP.diseasegroup("Chronic_Respiratory_Diseases")
         backbot = scala.io.StdIn.readLine()
       }
 
       //functionsIMP.calcdiff()
-      else if (running=="8" && logginstatus=="User") {
+      else if (running=="7" && logginstatus=="User") {
         functionsIMP.mostvulnerable()
         backbot = scala.io.StdIn.readLine()
       }
 
-      else if (running=="9" && logginstatus=="User") {
+      else if (running=="8" && logginstatus=="User") {
         functionsIMP.leastvulnerable()
         backbot = scala.io.StdIn.readLine()
       }
 
-      else if (running=="10" && logginstatus=="User") {
-        functionsIMP.costumvulnerable()
-        backbot = scala.io.StdIn.readLine()
-      }
-
-      else if (running == "11" && adminstatus=="True"){
+      else if (running == "9" && adminstatus=="True"){
         functionsIMP.generalquery()
         backbot = scala.io.StdIn.readLine()
       }
