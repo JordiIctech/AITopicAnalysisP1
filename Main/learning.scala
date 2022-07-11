@@ -6,7 +6,7 @@ object learning {
 
     testing.connectlink()
 
-    testing.passwordmanagement()
+    testing.yearmin()
 
 
 
