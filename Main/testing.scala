@@ -43,8 +43,4 @@ object testing {
     spark.sql("SELECT Age, SUM(All_Deaths) AS Msum FROM MortalityDatabase WHERE Year=2020 GROUP BY Age ORDER BY CAST(Msum as int)").show()
   }
 
-  yearmin()
-
-
-  spark.close()
 }

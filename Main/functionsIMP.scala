@@ -15,16 +15,16 @@ object functionsIMP {
   Logger.getLogger("org").setLevel(Level.ERROR)
   println("Status----------------->Spark Session Created")
   spark.sparkContext.setLogLevel("ERROR")
-
+  //-------------------------------------------------------------------------------------------------------------------
+  def connectlink(): Unit ={
+    println("Status----------------->Connected")
+  }
+  //-------------------------------------------------------------------------------------------------------------------
   def all2021column(currentselect: String)= {
     var selection = currentselect
     spark.sql(f"SELECT $selection FROM MortalityDatabase WHERE MortalityDatabase.Year='2021'").show() //Shows all select column for year 2021
   }
-
-  def connectlink(): Unit ={
-    println("Status----------------->Connected")
-  }
-
+  //-------------------------------------------------------------------------------------------------------------------
   def passwordmanagement() ={
     var currentselect = scala.io.StdIn.readLine() //Extract password based on given username
     var extractpass = spark.sql(s"SELECT Password FROM UserInfo WHERE UserInfo.Username = '$currentselect'").first()
@@ -39,10 +39,10 @@ object functionsIMP {
     else{
       println("No Pass Selected")}
     }
+  //-------------------------------------------------------------------------------------------------------------------
+
 
 
   //Need function to add disease column
 
-
-  //
 }
