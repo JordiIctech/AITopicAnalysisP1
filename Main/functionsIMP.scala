@@ -26,7 +26,7 @@ object functionsIMP {
   }
 
   def passwordmanagement() ={
-    var currentselect = scala.io.StdIn.readLine()
+    var currentselect = scala.io.StdIn.readLine() //Extract password based on given username
     var extractpass = spark.sql(s"SELECT Password FROM UserInfo WHERE UserInfo.Username = '$currentselect'").first()
 
     var currentpass = extractpass(0)
@@ -40,7 +40,9 @@ object functionsIMP {
       println("No Pass Selected")}
     }
 
+
   //Need function to add disease column
 
 
+  //
 }

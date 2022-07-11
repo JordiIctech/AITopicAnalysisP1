@@ -10,7 +10,12 @@ object mainUA {
     functionsIMP.all2021column(scala.io.StdIn.readLine()) // First one has to ask prompt after connecting.
 
     println("What is your username?")
-    functionsIMP.passwordmanagement()
+    functionsIMP.passwordmanagement() //Input username and check for password.
+
+
+
+
+
 
     functionsIMP.spark.close()
   }
