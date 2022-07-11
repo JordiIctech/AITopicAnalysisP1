@@ -22,7 +22,27 @@ object testing {
     println("Status----------------->Connected")
   }
   //-------------------------------------------------------------------------------------------------------------------
-  //spark.sql("ALTER TABLE UserInfo.Password WHERE UserInfo.Username = 'person2' RENAME TO 'passwords2'").show()
+  def passwordmanagement() ={
+    var currentselect = scala.io.StdIn.readLine() //Extract password based on given username
+    var extractpass = spark.sql(s"SELECT Password FROM UserInfo WHERE UserInfo.Username = '$currentselect'").first()
+
+    var currentpass = extractpass(0)
+
+    if( currentpass == "bigboss" ){
+      println("Pass 1 Selected")
+    } else if( currentpass == "word2" ){
+      println("Pass 3 Selected")
+    }
+    else{
+      println("No Pass Selected")}
+  }
+  //-------------------------------------------------------------------------------------------------------------------
+  def all2021column(currentselect: String)= {
+    var selection = currentselect
+    spark.sql(f"SELECT $selection FROM MortalityDatabase WHERE MortalityDatabase.Year='2021'").show() //Shows all select column for year 2021
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------
 
   def agegroup(): Unit ={
     spark.sql("SELECT Age, SUM(All_Deaths) AS Msum FROM MortalityDatabase WHERE Year=2020 GROUP BY Age ORDER BY CAST(Msum as int)").show()
@@ -62,7 +82,7 @@ object testing {
       "SUM(UnClassified), SUM(Heart_Disease), SUM(Cerebrovascular_Diseases), SUM(COVID19_Others), SUM(COVID19) " +
       "FROM MortalityDatabase WHERE Age LIKE '%85%' AND Month='12' GROUP BY Year").show(false)
   }
-
+  //-------------------------------------------------------------------------------------------------------------------
   def leastvulnerable(): Unit ={ //Covid hit kids soft compared to elders.
     spark.sql("SELECT * FROM MortalityDatabase WHERE Age LIKE '%14%' AND Month='12'").show(false)
 
@@ -71,7 +91,7 @@ object testing {
       "SUM(UnClassified), SUM(Heart_Disease), SUM(Cerebrovascular_Diseases), SUM(COVID19_Others), SUM(COVID19) " +
       "FROM MortalityDatabase WHERE Age LIKE '%14%' AND Month='12' GROUP BY Year").show(false)
   }
-
+  //-------------------------------------------------------------------------------------------------------------------
   def costumvulnerable(): Unit ={
     spark.sql("SELECT * FROM MortalityDatabase WHERE Age LIKE '%"+ "14" + "%' AND Month='12'").show(false)
 
