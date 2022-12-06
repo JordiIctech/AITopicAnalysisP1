@@ -7,3 +7,6 @@
 - Scala
 - Hadoop
 - Hive
+
+### Current Tasks:
+- None
